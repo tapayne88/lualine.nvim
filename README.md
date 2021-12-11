@@ -382,6 +382,7 @@ sections = {
                    -- padding can be specified to left or right separately like
                    -- padding = { left = left_padding, right = right_padding }
       fmt = nil,   -- format function, formats component's output
+      allow_empty = nil, -- allow component block to render even if content is empty
     }
   }
 }
