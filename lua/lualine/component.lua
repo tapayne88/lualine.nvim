@@ -176,14 +176,21 @@ function M:draw(default_highlight, is_focused)
   if self.options.fmt then
     status = self.options.fmt(status or '')
   end
-  if type(status) == 'string' and #status > 0 then
-    self.status = status
-    self:apply_icon()
-    self:apply_padding()
-    self:apply_highlights(default_highlight)
-    self:apply_section_separators()
-    self:apply_separator()
+
+  if type(status) ~= 'string' then
+    return self.status
   end
+
+  if #status == 0 and self.options.allow_empty ~= true then
+    return self.status
+  end
+
+  self.status = status
+  self:apply_icon()
+  self:apply_padding()
+  self:apply_highlights(default_highlight)
+  self:apply_section_separators()
+  self:apply_separator()
   return self.status
 end
 
